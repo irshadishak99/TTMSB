@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/loader.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="./css/aos.min.css" rel="stylesheet" />
+    <script src="./js/web3.min.js"></script>
+    <script src="js/App.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="./assets/images/icon.png" />
+    <title>Delete Document</title>
+  </head>
+
+  <body>
+    <div class="loader-wraper">
+      <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <!-----------------------------navbBar Start-------------------->
+  <!--NavBar Start-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-3 navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fa-solid fa-scroll home_text"></i>
+        <span class="home_text">TTMSB</span>
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link  " href="upload.html">Upload </a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="verify.html">Verify </a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active" href="delete.html">Delete </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="admin.html">Admin</a>
+            </li>          
+      <!--      <li class="nav-item">
+          <a class="nav-link" href="about.html">Team</a>
+          </li> -->
+      </ul>
+      <div class="d-flex">
+        <button
+          id="loginButton"
+          onclick="connect()"
+          class="btn main-button"
+        >Login</button>
+        <button
+          id="logoutButton"
+          onclick="disconnect()"
+          class="btn main-button"
+        > Logout</button>
+      </div>
+      </div>
+    </div>
+    </nav>
+    <!---------------------NavBar End-------------------->
+
+    <!--=====================Upload Document===========================-->
+
+      <div class="container">
+        <div class="alert alert-danger d-none mt-2">
+          Please download MetaMask at <a target="_blank" href="https://metamask.io/download">Metamask Site</a>
+         </div>
+        <div class="row content m-1"> 
+          <div data-aos="fade-down" class="box wallet-status col-lg-12 d-flex flex-column my-2">
+            <i class="fa-brands fa-connectdevelop icon" aria-hidden="true"></i>
+            <span id="Exporter-info" class="p-1 mb-2"><span class="text-warning"></span></span>
+            <span id="network" class="p-1"><span class="text-warning"></span></span>
+           <span id="userAddress" class="p-1"><span class="text-warning"></span></span>
+           <span id="userBalance" class="p-1"> <span class="text-warning"></span></span>
+           
+         
+          </div>
+        
+          <div data-aos="zoom-in" class="col-lg-6 py-3 data-upload my-3 mx-md-2">
+            <input onchange="get_Sha3()"  id="doc-file" type="file"/>
+            
+            <span id="note" class="text-danger"
+              ></span
+            >
+            <img id="loader" class="d-none" src="./files/loader.svg" alt="loader">
+            <input
+            onclick="deleteHash()"
+              class="btn  upload-button main-button"
+              type="submit"
+              value="Delete document"
+              id="upload_file_button"
+            />
+          </div>
+          
+ 
+        
+        </div>
+      </div>
+   
+    <!--=====================Footer===========================-->
+    <footer class="footer-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-md-3 item">
+            <h3   data-aos="fade-right">Services</h3>
+            <ul  data-aos="zoom-in">
+              <li><a href="upload.html">Upload</a></li>
+              <li><a href="delete.html">Delete</li>
+              <li><a href="verify.html">Verification </a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-md-3 item">
+            <h3   data-aos="fade-right">About </h3>
+            <ul  data-aos="zoom-in">
+              <li><a href="about.html">Author</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 item text">
+            <h3  data-aos="fade-right"> 
+               <i class="fa-solid fa-scroll"></i>
+              TTMSB</h3>
+             <p  data-aos="zoom-in">
+              Trusted Transcript Management System Using Blockchain is to have a transcript management system that solves current problem of transcripts management in the academic community and industrial parties. 
+              </p>
+          </div>
+          <div class="col-md text-center text-md-start">
+            <h3 data-aos="fade-right">Credits</h3>
+            <ul data-aos="zoom-in">
+             </ul>
+          </div>
+          <div  data-aos="zoom-in" class="col item social">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i> </a
+            ><a href="#"><i class="fa-brands fa-github"> </i></a>
+            <a href="#"><i class="fa-brands fa-instagram"> </i> </a>
+          </div>
+        </div>
+        <p class="copyright">cad @ 2023</p>
+      </div>
+
+    </footer>
+    </div>
+    <div >
+      <i onclick="topFunction()" id="scroll-btn" class="fa-solid fa-angle-up"></i>
+    </div>
+    <div><a href="mailto:devaloshe@gmail.com?subject=From OrioChain Site"> 
+      <i class="mail-us fa-solid fa-headset"></i>
+    </a>
+    <script src="./js/aos.js"></script>
+    <script src="./js/script.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+<script>
+  window.CONTRACT = {
+  address: '0x18ba5497e5fa15d5C48572B9940635f1a804E8B5',
+  network: 'https://matic-mumbai.chainstacklabs.com',
+  explore: 'https://mumbai.polygonscan.com/',
+  abi: [
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: 'address',
+          name: '_exporter',
+          type: 'address',
+        },
+        {
+          indexed: false,
+          internalType: 'string',
+          name: '_ipfsHash',
+          type: 'string',
+        },
+      ],
+      name: 'addHash',
+      type: 'event',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'address',
+          name: '_add',
+          type: 'address',
+        },
+        {
+          internalType: 'string',
+          name: '_info',
+          type: 'string',
+        },
+      ],
+      name: 'add_Exporter',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'bytes32',
+          name: 'hash',
+          type: 'bytes32',
+        },
+        {
+          internalType: 'string',
+          name: '_ipfs',
+          type: 'string',
+        },
+      ],
+      name: 'addDocHash',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'address',
+          name: '_add',
+          type: 'address',
+        },
+        {
+          internalType: 'string',
+          name: '_newInfo',
+          type: 'string',
+        },
+      ],
+      name: 'alter_Exporter',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'address',
+          name: '_newOwner',
+          type: 'address',
+        },
+      ],
+      name: 'changeOwner',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'address',
+          name: '_add',
+          type: 'address',
+        },
+      ],
+      name: 'delete_Exporter',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'bytes32',
+          name: '_hash',
+          type: 'bytes32',
+        },
+      ],
+      name: 'deleteHash',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      stateMutability: 'nonpayable',
+      type: 'constructor',
+    },
+    {
+      inputs: [],
+      name: 'count_Exporters',
+      outputs: [
+        {
+          internalType: 'uint16',
+          name: '',
+          type: 'uint16',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      name: 'count_hashes',
+      outputs: [
+        {
+          internalType: 'uint16',
+          name: '',
+          type: 'uint16',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'bytes32',
+          name: '_hash',
+          type: 'bytes32',
+        },
+      ],
+      name: 'findDocHash',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256',
+        },
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256',
+        },
+        {
+          internalType: 'string',
+          name: '',
+          type: 'string',
+        },
+        {
+          internalType: 'string',
+          name: '',
+          type: 'string',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'address',
+          name: '_add',
+          type: 'address',
+        },
+      ],
+      name: 'getExporterInfo',
+      outputs: [
+        {
+          internalType: 'string',
+          name: '',
+          type: 'string',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      name: 'owner',
+      outputs: [
+        {
+          internalType: 'address',
+          name: '',
+          type: 'address',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+  ],
+}
+
+
+
+async function connect() {
+  if (window.ethereum) {
+    try {
+      const selectedAccount = await window.ethereum
+        .request({
+          method: 'eth_requestAccounts',
+        })
+        .then((accounts) => {
+          return accounts[0]
+        })
+        .catch(() => {
+          throw Error('No account selected 👍')
+        })
+
+      window.userAddress = selectedAccount
+      console.log(selectedAccount)
+      window.localStorage.setItem('userAddress', window.userAddress)
+      window.location.reload()
+    } catch (error) {}
+  } else {
+    $('#upload_file_button').attr('disabled', true)
+    $('#doc-file').attr('disabled', true)
+    // Show The Warning for not detecting wallet
+    document.querySelector('.alert').classList.remove('d-none')
+  }
+}
+
+window.onload = async () => {
+  $('#loader').hide()
+
+  $('#loginButton').hide()
+  $('#recent-header').hide()
+  $('.loader-wraper').fadeOut('slow')
+  hide_txInfo()
+  $('#upload_file_button').attr('disabled', true)
+
+  window.userAddress = window.localStorage.getItem('userAddress')
+
+  if (window.ethereum) {
+    window.web3 = new Web3(window.ethereum)
+    window.contract = new window.web3.eth.Contract(
+      window.CONTRACT.abi,
+      window.CONTRACT.address,
+    )
+    if (window.userAddress.length > 10) {
+      // let isLocked =await window.ethereum._metamask.isUnlocked();
+      //  if(!isLocked) disconnect();
+      $('#logoutButton').show()
+      $('#loginButton').hide()
+      $('#userAddress')
+        .html(`<i class="fa-solid fa-address-card mx-2 text-primary"></i>${truncateAddress(
+        window.userAddress,
+      )}
+       <a class="text-info" href="${window.CONTRACT.explore}/address/${
+        window.userAddress
+      }" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-square-arrow-up-right text-warning"></i></a>  
+       </a>`)
+
+      if (window.location.pathname == '/admin.html') await getCounters()
+
+      await getExporterInfo()
+      await get_ChainID()
+      await get_ethBalance()
+      $('#Exporter-info').html(
+        `<i class="fa-solid fa-building-columns mx-2 text-warning"></i>${window.info}`,
+      )
+
+      setTimeout(() => {
+        listen()
+      }, 0)
+    } else {
+      $('#logoutButton').hide()
+      $('#loginButton').show()
+      $('#upload_file_button').attr('disabled', true)
+      $('#doc-file').attr('disabled', true)
+      $('.box').addClass('d-none')
+      $('.loading-tx').addClass('d-none')
+    }
+  } else {
+    //No metamask detected
+    $('#logoutButton').hide()
+    $('#loginButton').hide()
+    $('.box').addClass('d-none')
+    $('#upload_file_button').attr('disabled', true)
+    $('#doc-file').attr('disabled', true)
+    document.querySelector('.alert').classList.remove('d-none')
+
+    // alert("Please download metamask extension first.\nhttps://metamask.io/download/");
+    // window.location = "https://metamask.io/download/"
+  }
+}
+
+function hide_txInfo() {
+  $('.transaction-status').addClass('d-none')
+}
+
+function show_txInfo() {
+  $('.transaction-status').removeClass('d-none')
+}
+async function get_ethBalance() {
+  await web3.eth.getBalance(window.userAddress, function (err, balance) {
+    if (err === null) {
+      $('#userBalance').html(
+        "<i class='fa-brands fa-gg-circle mx-2 text-danger'></i>" +
+          web3.utils.fromWei(balance).substr(0, 6) +
+          '',
+      )
+    } else $('#userBalance').html('n/a')
+  })
+}
+
+if (window.ethereum) {
+  window.ethereum.on('accountsChanged', function (accounts) {
+    connect()
+  })
+}
+
+function printUploadInfo(result) {
+  $('#transaction-hash').html(
+    `<a target="_blank" title="View Transaction at Polygon Scan" href="${window.CONTRACT.explore}/tx/` +
+      result.transactionHash +
+      '"+><i class="fa fa-check-circle font-size-2 mx-1 text-white mx-1"></i></a>' +
+      truncateAddress(result.transactionHash),
+  )
+  $('#file-hash').html(
+    `<i class="fa-solid fa-hashtag mx-1"></i> ${truncateAddress(
+      window.hashedfile,
+    )}`,
+  )
+  $('#contract-address').html(
+    `<i class="fa-solid fa-file-contract mx-1"></i> ${truncateAddress(
+      result.to,
+    )}`,
+  )
+  $('#time-stamps').html('<i class="fa-solid fa-clock mx-1"></i>' + getTime())
+  $('#blockNumber').html(
+    `<i class="fa-solid fa-link mx-1"></i>${result.blockNumber}`,
+  )
+  $('#blockHash').html(
+    `<i class="fa-solid fa-shield mx-1"></i> ${truncateAddress(
+      result.blockHash,
+    )}`,
+  )
+  $('#to-netowrk').html(
+    `<i class="fa-solid fa-chart-network"></i> ${window.chainID}`,
+  )
+  $('#to-netowrk').hide()
+  $('#gas-used').html(
+    `<i class="fa-solid fa-gas-pump mx-1"></i> ${result.gasUsed} Gwei`,
+  )
+  $('#loader').addClass('d-none')
+  $('#upload_file_button').addClass('d-block')
+  show_txInfo()
+  get_ethBalance()
+
+  $('#note').html(`<h5 class="text-info">
+   Transaction Confirmed to the BlockChain 😊<i class="mx-2 text-info fa fa-check-circle" aria-hidden="true"></i>
+   </h5>`)
+  listen()
+}
+
+async function sendHash() {
+  $('#loader').removeClass('d-none')
+  $('#upload_file_button').slideUp()
+  $('#note').html(
+    `<h5 class="text-info">Please confirm the transaction 🙂</h5>`,
+  )
+  $('#upload_file_button').attr('disabled', true)
+  get_ChainID()
+  
+  // Initilize Ipfs
+  
+
+  const file = document.getElementById('doc-file').files[0]
+  node = await Ipfs.create({ repo: 'ok' + Math.random() })
+  const fileReader = new FileReader()
+  fileReader.readAsArrayBuffer(file)
+  fileReader.onload = async (event) => {
+    let result = await node.add(fileReader.result)
+    window.ipfsCid = result.path
+    MyCID = window.ipfsCid + '/'
+    console.log('My-CID 1: ' + MyCID)
+  }
+
+  // =================================================
+  if (window.hashedfile) {
+    const file = document.getElementById('doc-file').files[0]
+    node = await Ipfs.create({ repo: 'ok' + Math.random() })
+    const fileReader = new FileReader()
+    fileReader.readAsArrayBuffer(file)
+    fileReader.onload = async (event) => {
+      let result = await node.add(fileReader.result)
+      window.ipfsCid = result.path
+    }
+
+    await window.contract.methods
+      .addDocHash(window.hashedfile, window.ipfsCid)
+      .send({ from: window.userAddress })
+      .on('transactionHash', function (_hash) {
+        $('#note').html(
+          `<h5 class="text-info p-1 text-center">Please wait for transaction to be mined...</h5>`,
+        )
+      })
+
+      .on('receipt', function (receipt) {
+        printUploadInfo(receipt)
+        generateQRCode()
+       
+        })
+
+      .on('confirmation', function (confirmationNr) {})
+      .on('error', function (error) {
+        console.log(error.message)
+        $('#note').html(`<h5 class="text-center">${error.message} 😏</h5>`)
+        $('#loader').addClass('d-none')
+        $('#upload_file_button').slideDown()
+      })
+  }
+}
+
+
+
+async function deleteHash() {
+  $('#loader').removeClass('d-none')
+  $('#upload_file_button').slideUp()
+  $('#note').html(
+    `<h5 class="text-info">Please confirm the transaction 🙂</h5>`,
+  )
+  $('#upload_file_button').attr('disabled', true)
+  get_ChainID()
+
+  if (window.hashedfile) {
+    await window.contract.methods
+      .deleteHash(window.hashedfile)
+      .send({ from: window.userAddress })
+      .on('transactionHash', function (hash) {
+        $('#note').html(
+          `<h5 class="text-info p-1 text-center">Please wait for transaction to be mined 😴</h5>`,
+        )
+      })
+
+      .on('receipt', function (receipt) {
+        $('#note').html(
+          `<h5 class="text-info p-1 text-center">Document Deleted 😳</h5>`,
+        )
+
+        $('#loader').addClass('d-none')
+        $('#upload_file_button').slideDown()
+      })
+
+      .on('confirmation', function (confirmationNr) {
+        console.log(confirmationNr)
+      })
+      .on('error', function (error) {
+        console.log(error.message)
+        $('#note').html(`<h5 class="text-center">${error.message}</h5>`)
+        $('#loader').addClass('d-none')
+        $('#upload_file_button').slideDown()
+      })
+  }
+}
+
+function getTime() {
+  let d = new Date()
+  a =
+    d.getFullYear() +
+    '-' +
+    (d.getMonth() + 1) +
+    '-' +
+    d.getDate() +
+    ' - ' +
+    d.getHours() +
+    ':' +
+    d.getMinutes() +
+    ':' +
+    d.getSeconds()
+  return a
+}
+
+async function get_ChainID() {
+  let a = await web3.eth.getChainId()
+  console.log(a)
+  switch (a) {
+    case 1:
+      window.chainID = 'Ethereum Main Network (Mainnet)'
+      break
+    case 80001:
+      window.chainID = 'Polygon Test Network'
+      break
+    case 137:
+      window.chainID = 'Polygon Mainnet'
+      break
+    case 3:
+      window.chainID = 'Ropsten Test Network'
+      break
+    case 4:
+      window.chainID = 'Rinkeby Test Network'
+      break
+    case 5:
+      window.chainID = 'Goerli Test Network'
+      break
+    case 42:
+      window.chainID = 'Kovan Test Network'
+      break
+    default:
+      window.chainID = 'Uknnown ChainID'
+      break
+  }
+  let network = document.getElementById('network')
+  if (network) {
+    document.getElementById(
+      'network',
+    ).innerHTML = `<i class="text-info fa-solid fa-circle-nodes mx-2"></i>${window.chainID}`
+  }
+}
+
+function get_Sha3() {
+  hide_txInfo()
+  $('#note').html(`<h5 class="text-warning">Hashing Your Document 😴...</h5>`)
+
+  $('#upload_file_button').attr('disabled', false)
+
+  console.log('file changed')
+
+  var file = document.getElementById('doc-file').files[0]
+  if (file) {
+    var reader = new FileReader()
+    reader.readAsText(file, 'UTF-8')
+    reader.onload = function (evt) {
+      // var SHA256 = new Hashes.SHA256();
+      // = SHA256.hex(evt.target.result);
+      window.hashedfile = web3.utils.soliditySha3(evt.target.result)
+      console.log(`Document Hash : ${window.hashedfile}`)
+      $('#note').html(
+        `<h5 class="text-center text-info">Document Hashed  😎 </h5>`,
+      )
+    }
+    reader.onerror = function (evt) {
+      console.log('error reading file')
+    }
+  } else {
+    window.hashedfile = null
+  }
+}
+
+function disconnect() {
+  $('#logoutButton').hide()
+  $('#loginButton').show()
+  window.userAddress = null
+  $('.wallet-status').addClass('d-none')
+  window.localStorage.setItem('userAddress', null)
+  $('#upload_file_button').addClass('disabled')
+}
+
+function truncateAddress(address) {
+  if (!address) {
+    return
+  }
+  return `${address.substr(0, 7)}...${address.substr(
+    address.length - 8,
+    address.length,
+  )}`
+}
+
+async function addExporter() {
+  const address = document.getElementById('Exporter-address').value
+  const info = document.getElementById('info').value
+
+  if (info && address) {
+    $('#loader').removeClass('d-none')
+    $('#ExporterBtn').slideUp()
+    $('#edit').slideUp()
+    $('#delete').slideUp()
+    $('#note').html(
+      `<h5 class="text-info">Please confirm the transaction 👍...</h5>`,
+    )
+    $('#ExporterBtn').attr('disabled', true)
+    $('#delete').attr('disabled', true)
+    $('#edit').attr('disabled', true)
+    get_ChainID()
+
+    try {
+      await window.contract.methods
+        .add_Exporter(address, info)
+        .send({ from: window.userAddress })
+
+        .on('transactionHash', function (hash) {
+          $('#note').html(
+            `<h5 class="text-info p-1 text-center">Please wait for transaction to be mined 😴...</h5>`,
+          )
+        })
+
+        .on('receipt', function (receipt) {
+          $('#loader').addClass('d-none')
+          $('#ExporterBtn').slideDown()
+          $('#edit').slideDown()
+          $('#delete').slideDown()
+          console.log(receipt)
+          $('#note').html(
+            `<h5 class="text-info">Exporter Added to the Blockchain 😇</h5>`,
+          )
+        })
+
+        .on('confirmation', function (confirmationNr) {})
+        .on('error', function (error) {
+          console.log(error.message)
+          $('#note').html(`<h5 class="text-center">${error.message}</h5>`)
+          $('#loader').addClass('d-none')
+          $('#ExporterBtn').slideDown()
+        })
+    } catch (error) {
+      $('#note').html(`<h5 class="text-center">${error.message}</h5>`)
+      $('#loader').addClass('d-none')
+      $('#ExporterBtn').slideDown()
+      $('#edit').slideDown()
+      $('#delete').slideDown()
+    }
+  } else {
+    $('#note').html(
+      `<h5 class="text-center text-warning">You need to provide address & inforamtion to add  </h5>`,
+    )
+  }
+}
+
+async function getExporterInfo() {
+  await window.contract.methods
+    .getExporterInfo(window.userAddress)
+    .call({ from: window.userAddress })
+
+    .then((result) => {
+      window.info = result
+    })
+}
+
+async function getCounters() {
+  await window.contract.methods
+    .count_Exporters()
+    .call({ from: window.userAddress })
+
+    .then((result) => {
+      $('#num-exporters').html(
+        `<i class="fa-solid fa-building-columns mx-2 text-info"></i>${result}`,
+      )
+    })
+  await window.contract.methods
+    .count_hashes()
+    .call({ from: window.userAddress })
+
+    .then((result) => {
+      $('#num-hashes').html(
+        `<i class="fa-solid fa-file mx-2 text-warning"></i>${result}`,
+      )
+    })
+}
+
+async function editExporter() {
+  const address = document.getElementById('Exporter-address').value
+  const info = document.getElementById('info').value
+
+  if (info && address) {
+    $('#loader').removeClass('d-none')
+    $('#ExporterBtn').slideUp()
+    $('#edit').slideUp()
+    $('#delete').slideUp()
+    $('#note').html(
+      `<h5 class="text-info">Please confirm the transaction 😴...</h5>`,
+    )
+    $('#ExporterBtn').attr('disabled', true)
+    get_ChainID()
+
+    try {
+      await window.contract.methods
+        .alter_Exporter(address, info)
+        .send({ from: window.userAddress })
+
+        .on('transactionHash', function (hash) {
+          $('#note').html(
+            `<h5 class="text-info p-1 text-center">Please wait for transaction to be mined 😇...</h5>`,
+          )
+        })
+
+        .on('receipt', function (receipt) {
+          $('#loader').addClass('d-none')
+          $('#ExporterBtn').slideDown()
+          console.log(receipt)
+          $('#note').html(
+            `<h5 class="text-info">Exporter Updated Successfully 😊</h5>`,
+          )
+        })
+
+        .on('confirmation', function (confirmationNr) {})
+        .on('error', function (error) {
+          console.log(error.message)
+          $('#note').html(`<h5 class="text-center">${error.message} 👍</h5>`)
+          $('#loader').addClass('d-none')
+          $('#ExporterBtn').slideDown()
+        })
+    } catch (error) {
+      $('#note').html(`<h5 class="text-center">${error.message} 👍</h5>`)
+      $('#loader').addClass('d-none')
+      $('#ExporterBtn').slideDown()
+      $('#edit').slideDown()
+      $('#delete').slideDown()
+    }
+  } else {
+    $('#note').html(
+      `<h5 class="text-center text-warning">You need to provide address & inforamtion to update 😵‍💫 </h5>`,
+    )
+  }
+}
+
+async function deleteExporter() {
+  const address = document.getElementById('Exporter-address').value
+
+  if (address) {
+    $('#loader').removeClass('d-none')
+    $('#ExporterBtn').slideUp()
+    $('#edit').slideUp()
+    $('#delete').slideUp()
+    $('#note').html(
+      `<h5 class="text-info">Please confirm the transaction 😕...</h5>`,
+    )
+    $('#ExporterBtn').attr('disabled', true)
+    get_ChainID()
+
+    try {
+      await window.contract.methods
+        .delete_Exporter(address)
+        .send({ from: window.userAddress })
+
+        .on('transactionHash', function (hash) {
+          $('#note').html(
+            `<h5 class="text-info p-1 text-center">Please wait for transaction to be mined 😴 ...</h5>`,
+          )
+        })
+
+        .on('receipt', function (receipt) {
+          $('#loader').addClass('d-none')
+          $('#ExporterBtn').slideDown()
+          $('#edit').slideDown()
+          $('#delete').slideDown()
+          console.log(receipt)
+          $('#note').html(
+            `<h5 class="text-info">Exporter Deleted Successfully 🙂</h5>`,
+          )
+        })
+        .on('error', function (error) {
+          console.log(error.message)
+          $('#note').html(`<h5 class="text-center">${error.message} 🙂</h5>`)
+          $('#loader').addClass('d-none')
+          $('#ExporterBtn').slideDown()
+          $('#edit').slideDown()
+          $('#delete').slideDown()
+        })
+    } catch (error) {
+      $('#note').html(`<h5 class="text-center">${error.message} 🙂</h5>`)
+      $('#loader').addClass('d-none')
+      $('#ExporterBtn').slideDown()
+      $('#edit').slideDown()
+      $('#delete').slideDown()
+    }
+  } else {
+    $('#note').html(
+      `<h5 class="text-center text-warning">You need to provide address to delete 👍</h5>`,
+    )
+  }
+}
+
+function generateQRCode() {
+  
+  document.getElementById('qrcode').innerHTML = ''
+  console.log('making qr-code...')
+  var qrcode = new QRCode(document.getElementById('qrcode'), {
+    colorDark: '#000',
+    colorLight: '#fff',
+    correctLevel: QRCode.CorrectLevel.H,
+  })
+  if (!window.hashedfile) return
+  let url = `${window.location.host}/verify?hash=${window.hashedfile}`
+  qrcode.makeCode(url)
+  
+  qrcodeattach =  qrcode.makeCode(url)
+
+  
+  document.getElementById('verfiy').href = window.location.protocol + '//' + url
+}
+
+
+async function listen() {
+  console.log('started...')
+  if (window.location.pathname != '/upload') return
+  document.querySelector('.loading-tx').classList.remove('d-none')
+  window.web3 = new Web3(window.ethereum)
+  window.contract = new window.web3.eth.Contract(
+    window.CONTRACT.abi,
+    window.CONTRACT.address,
+  )
+  await window.contract.getPastEvents(
+    'addHash',
+    {
+      filter: {
+        _exporter: window.userAddress, //Only get the documents uploaded by current Exporter
+      },
+      fromBlock: (await window.web3.eth.getBlockNumber()) - 999,
+      toBlock: 'latest',
+    },
+    function (error, events) {
+      printTransactions(events)
+      console.log(events)
+    },
+  )
+}
+
+function printTransactions(data) {
+  document.querySelector('.transactions').innerHTML = ''
+  document.querySelector('.loading-tx').classList.add('d-none')
+  if (!data.length) {
+    $('#recent-header').hide()
+    return
+  }
+  $('#recent-header').show()
+  const main = document.querySelector('.transactions')
+  for (let i = 0; i < data.length; i++) {
+    const a = document.createElement('a')
+    a.href = `${window.CONTRACT.explore}` + '/tx/' + data[i].transactionHash
+    a.setAttribute('target', '_blank')
+    a.className =
+      'col-lg-3 col-md-4 col-sm-5 m-2  bg-dark text-light rounded position-relative card'
+    a.style = 'overflow:hidden;'
+    const image = document.createElement('object')
+    image.style = 'width:100%;height: 100%;'
+    image.data = `https://ipfs.io/ipfs/${data[i].returnValues[1]}`
+    const num = document.createElement('h1')
+    num.append(document.createTextNode(i + 1))
+    a.appendChild(image)
+    num.style =
+      'position:absolute; left:4px; bottom: -20px;font-size:4rem; color: rgba(20, 63, 74, 0.35);'
+    a.appendChild(num)
+    main.prepend(a)
+  }
+}
+
+</script>

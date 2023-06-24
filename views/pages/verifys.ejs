@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/loader.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf_viewer.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="./css/aos.min.css" rel="stylesheet" />
+    <script src="./js/aos.js"></script>
+    <script src="./js/App.js"></script>
+    <script src="./js/web3.min.js"></script>
+    <script src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
+    <!--<script src="js/App.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="./assets/images/icon.png" />
+    <title>Verfiy Document</title>
+  </head>
+  <body>
+    <!-- loading Circular dots... -->
+    <div class="loader-wraper">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg bg-light py-3 navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/index">
+          <i class="fa-solid fa-scroll home_text"></i>
+          <span class="home_text">TTMSB</span>
+          </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/index">Home</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link active" href="/verify">Verify</a>
+            </li>
+
+        
+          </ul>
+     
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <!-- upload form -->
+      <div data-aos="zoom-in" class="col p-3 data-upload my-3 mx-md-2">
+        <input onchange="get_Sha3()" id="doc-file" type="file" />
+        <span id="note" class="text-danger"></span>
+        <img id="loader" src="files/loader.svg" alt="loader" />
+        <input
+          onclick="verify_Hash()"
+          class="btn mt-5 upload-button d-block main-button"
+          type="button"
+          value="Verify"
+          id="upload_file_button"
+        />
+      </div>
+      <!-- Verification result -->
+      <div class="box d-none my-3 row gx-0 mx-md-2 transaction-status col-lg">
+        <div class="left col-lg-6 p-3 d-flex flex-column">
+          <span class="p-2 info text-center" id="doc-status"></span>
+          <span class="p-2 info" id="student-name"></span>
+          <span class="p-2 info" id="file-hash"></span>
+          <span class="p-2 info" id="contract-address"></span>
+          <span class="p-2 info" id="time-stamps"></span>
+          <span class="p-2 info" id="blockNumber"></span>
+          <span class="p-2 info" id="college-name"></span>
+
+          <span class="d-flex justify-content-center">
+            <a
+              title="View Cirtificate on IPFS"
+              href="#"
+              id="download-documents"
+              class="download-link"
+              target="_blank"
+            >
+              Show Certificate
+            </a>
+          </span>
+        </div>
+        <div
+          class="right col-lg-6 d-flex justify-content-center align-items-center"
+        >
+          <object class="mt-4"  id="student-document" data="" type="application/pdf"  alt="student-document"></object>
+          <!-- <img class="mt-4" id="student-document" alt="Student document" /> -->
+        </div>
+      </div>
+    </div>
+    <footer class="footer-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-md-3 item">
+            <h3   data-aos="fade-right">Services</h3>
+            <ul  data-aos="zoom-in">
+              <li><a href="upload.html">Upload</a></li>
+              <li><a href="delete.html">Delete</li>
+              <li><a href="verify.html">Verification </a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-md-3 item">
+            <h3   data-aos="fade-right">About </h3>
+            <ul  data-aos="zoom-in">
+              <li><a href="about.html">Author</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 item text">
+            <h3  data-aos="fade-right"> 
+               <i class="fa-solid fa-scroll"></i>
+              TTMSB</h3>
+             <p  data-aos="zoom-in">
+              Trusted Transcript Management System Using Blockchain is to have a transcript management system that solves current problem of transcripts management in the academic community and industrial parties. 
+            </p>
+          </div>
+          <div class="col-md text-center text-md-start">
+            <h3 data-aos="fade-right">Credits</h3>
+            <ul data-aos="zoom-in">
+             </ul>
+          </div>
+          <div  data-aos="zoom-in" class="col item social">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i> </a
+            ><a href="#"><i class="fa-brands fa-github"> </i></a>
+            <a href="#"><i class="fa-brands fa-instagram"> </i> </a>
+          </div>
+        </div>
+        <p class="copyright">cad @ 2023</p>
+      </div>
+
+    </footer>
+    <div>
+      <a
+        title="Send Email"
+        href="mailto:irshadishak99@gmail.com?subject=TTMSB"
+      >
+        <i class="mail-us fa-solid fa-headset"></i>
+      </a>
+    </div>
+    <i onclick="topFunction()" id="scroll-btn" class="fa-solid fa-angle-up"></i>
+  
+    <script>
+
+
+      window.CONTRACT = {
+      address: '0x18ba5497e5fa15d5C48572B9940635f1a804E8B5',
+      network: 'https://matic-mumbai.chainstacklabs.com',
+      explore: 'https://mumbai.polygonscan.com/',
+      abi: [
+        
+        {
+          anonymous: false,
+         
+          inputs: [
+            {
+              indexed: true,
+              internalType: 'address',
+              name: '_exporter',
+              type: 'address',
+            },
+            {
+              indexed: false,
+              internalType: 'string',
+              name: '_ipfsHash',
+              type: 'string',
+            },
+          ],
+          name: 'addHash',
+          type: 'event',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: '_add',
+              type: 'address',
+            },
+            {
+              internalType: 'string',
+              name: '_info',
+              type: 'string',
+            },
+          ],
+          name: 'add_Exporter',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: 'hash',
+              type: 'bytes32',
+            },
+            {
+              internalType: 'string',
+              name: '_ipfs',
+              type: 'string',
+            },
+          ],
+          name: 'addDocHash',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: '_add',
+              type: 'address',
+            },
+            {
+              internalType: 'string',
+              name: '_newInfo',
+              type: 'string',
+            },
+          ],
+          name: 'alter_Exporter',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: '_newOwner',
+              type: 'address',
+            },
+          ],
+          name: 'changeOwner',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: '_add',
+              type: 'address',
+            },
+          ],
+          name: 'delete_Exporter',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: '_hash',
+              type: 'bytes32',
+            },
+          ],
+          name: 'deleteHash',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          stateMutability: 'nonpayable',
+          type: 'constructor',
+        },
+        {
+          inputs: [],
+          name: 'count_Exporters',
+          outputs: [
+            {
+              internalType: 'uint16',
+              name: '',
+              type: 'uint16',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'count_hashes',
+          outputs: [
+            {
+              internalType: 'uint16',
+              name: '',
+              type: 'uint16',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'bytes32',
+              name: '_hash',
+              type: 'bytes32',
+            },
+          ],
+          name: 'findDocHash',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+            {
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
+            {
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'address',
+              name: '_add',
+              type: 'address',
+            },
+          ],
+          name: 'getExporterInfo',
+          outputs: [
+            {
+              internalType: 'string',
+              name: '',
+              type: 'string',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'owner',
+          outputs: [
+            {
+              internalType: 'address',
+              name: '',
+              type: 'address',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+      ],
+    }
+    const web3 = new Web3(new Web3.providers.HttpProvider(window.CONTRACT.network))
+    const contract = new web3.eth.Contract(
+      window.CONTRACT.abi,
+      window.CONTRACT.address,
+    )
+    
+    
+    window.onload = async () => {
+      $('#loader').hide()
+      $('.loader-wraper').fadeOut('slow')
+      checkURL()
+      $('#upload_file_button').attr('disabled', true)
+    }
+    
+    async function verify_Hash() {
+      $('#loader').show()
+      if (window.hashedfile) {
+        
+        await contract.methods
+          .findDocHash(window.hashedfile)
+          .call({ from: window.userAddress})
+          .then((result) => {
+            console.log(result)
+            $('.transaction-status').removeClass('d-none')
+            window.newHash = result
+            if ((result[0] != 0) & (result[1] != 0)) {
+              print_info(result, true)
+            } else {
+              print_info(result, false)
+            }
+          })
+      }
+    }var users;
+    
+    function checkURL() {
+      let url_string = window.location.href
+      let url = new URL(url_string)
+      window.hashedfile = url.searchParams.get('hash')
+      let hash =window.hashedfile;
+      // if(window.hashedfile){
+      //   fetch('/verify?hash='+hash,{
+      //   method: 'GET'
+      // })
+      //    .then(response => response.json())
+      //    .then(data=> {
+      //    console.log(data);
+      //    users =data;
+      //    console.log(users);
+         
+      //   })
+      //    .catch(error => {
+      //    console.error(error);
+      //   })
+      //   }  else{ 
+      //     console.error('Hash not found in the URL');
+    // }
+    verify_Hash()
+  };
+
+      
+  
+
+    
+    async function get_Sha3() {
+      $('#note').html(`<h5 class="text-warning">Hashing Your Document...</h5>`)
+      $('#upload_file_button').attr('disabled', false)
+      console.log('file changed')
+      var file = await document.getElementById('doc-file').files[0]
+      if (file) {
+        var reader = new FileReader()
+        reader.readAsText(file, 'UTF-8')
+        reader.onload = async function (evt) {
+          // var SHA256 = new Hashes.SHA256();
+          // = SHA256.hex(evt.target.result);
+          window.hashedfile = await web3.utils.soliditySha3(evt.target.result)
+          console.log(`Document Hash : ${window.hashedfile}`)
+          $('#note').html(
+            `<h5 class="text-center text-info">Document Hashed  😎 </h5>`,
+          )
+        }
+        reader.onerror = function (evt) {
+          console.log('error reading file')
+          return false
+        }
+      } else {
+        window.hashedfile = null
+        return false
+      }
+    }
+    
+    
+    
+    function print_info(result, is_verified) {
+      //Default Image for not Verified Docunets
+      document.getElementById('student-document').src = './files/notvalid.svg'
+      $('#loader').hide()
+      // when document not verfied
+      if (!is_verified) {
+        // document.getElementById('download-document').classList.add('d-none')
+        $('#download-document').hide()
+        $('#doc-status').html(`<h3 class="text-danger">
+            Certificate not Verified 😕
+             <i class="text-danger  fa fa-times-circle" aria-hidden="true"></i>
+            </h3>`)
+           
+        $('#file-hash').html(
+          `<span class="text-info"><i class="fa-solid fa-hashtag"></i></span> ${truncateAddress(
+            window.hashedfile,
+          )}`,
+        )
+        $('#college-name').hide()
+        $('#student-name').hide()
+        $('#contract-address').hide()
+        $('#time-stamps').hide()
+        $('#blockNumber').hide()
+        $('.transaction-status').show()
+      } else {
+        $('#download-document').show()
+        // when document verfied
+        $('#college-name').show()
+        $('#student-name').show()
+        $('#contract-address').show()
+        $('#time-stamps').show()
+        $('#blockNumber').show()
+    
+        var t = new Date(1970, 0, 1)
+        t.setSeconds(result[1])
+        console.log(result[1])
+        t.setHours(t.getHours() + 3)
+        // hide loader
+        $('#loader').hide()
+        $('#doc-status').html(`<h3 class="text-info">
+             Certificate Verified Successfully 😊
+             <i class="text-info fa fa-check-circle" aria-hidden="true"></i>
+            </h3>`)
+        $('#file-hash').html(
+          `<span class="text-info"><i class="fa-solid fa-hashtag"></i></span> ${truncateAddress(
+            window.hashedfile,
+          )}`,
+        )
+        $('#college-name').html(
+          `<span class="text-info"><i class="fa-solid fa-graduation-cap"></i></span> ${result[2]}`,
+        )
+        $('#student-name').html(
+          `<span class="text-info"><i class="fa-solid fa-graduation-cap"></i></span>`,
+        )
+        $('#contract-address').html(
+          `<span class="text-info"><i class="fa-solid fa-file-contract"></i> </span>${truncateAddress(
+            window.CONTRACT.address,
+          )}`,
+        )
+        $('#time-stamps').html(
+          `<span class="text-info"><i class="fa-solid fa-clock"></i> </span>${t}`,
+        )
+        $('#blockNumber').html(
+          `<span class="text-info"><i class="fa-solid fa-cube"></i></span> ${result[0]}`,
+        )
+        
+
+        
+  //       document.getElementById("student-document", function(){ 
+  //         console.log("preview");
+	// 	var adobeDCView = new AdobeDC.View({clientId: "3b5c3d5e4c44423ea4f1007862698cd2", divId: "student-document"});
+	// 	adobeDCView.previewFile({
+	// 		content:{location: {url: window.location.host + '/upload/' + result[3]}},
+	// 		metaData:{fileName:result[3] }
+	// 	}, {embedMode: "SIZED_CONTAINER"});
+	// });
+        document.getElementById('student-document').data =
+           '/upload/' + result[3]
+        const container = document.getElementById('student-document');
+    // Specify the URL of the PDF file
+//       const pdfUrl =  window.location.host+ '/upload/' + result[3];
+//       console.log('helloss');
+//         pdfjsLib.getDocument(pdfUrl).promise.then(pdfDoc => {
+//   // Get the first page of the PDF
+//         pdfDoc.getPage(1).then(page => {
+//     // Set the scale at which the PDF will be rendered (1.0 = 100%)
+//         const scale = 1.5;
+//         console.log('helloss2');
+//     // Create a canvas element to render the PDF page
+//          const canvas = document.createElement('canvas');
+//          const context = canvas.getContext('2d');
+//          canvas.style.display = 'block';
+//          container.appendChild(canvas);
+
+//        // Get the viewport of the PDF page at the specified scale
+//            const viewport = page.getViewport({ scale });
+
+// // Set the canvas dimensions to match the PDF page dimensions
+//           canvas.width = viewport.width;
+//             canvas.height = viewport.height;
+
+// // Render the PDF page on the canvas
+//         page.render({ canvasContext: context, viewport });
+//           });
+//           }).catch(error => {
+//         console.error('Error loading PDF:', error);
+//         });
+
+          console.log(window.location.host+ '/upload/' + result[3])
+        document.getElementById('download-documents').href = window.location.host + '/upload/' + result[3]
+        $('.transaction-status').show()
+      }
+    }
+   
+    function truncateAddress(address) {
+      if (!address) {
+        return
+      }
+      return `${address.substr(0, 7)}...${address.substr(
+        address.length - 8,
+        address.length,
+      )}`
+    }
+    
+    
+    </script>
+    <script src="./js/script.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+  </body>
+</html>
+

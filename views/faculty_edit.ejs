@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title><%= title %></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<h2 style="text-align: center;"><%= title %> <%=stud.studID %></h2>
+<form action="/updateFac" method="post">
+            
+  <div style="margin-top: 50px; padding: 5%; background-color: #f3f3f3;">
+   
+    <div class="form-group">
+               
+    <input type="text" class="form-control"  id="studID" name="studID"  placeholder="<%=stud.studID %>" value="" required="required"/>
+  </div>
+  
+  <div  class="form-group">
+      <input type="text" class="form-control" id="name" name="name"  placeholder="<%=stud.name %>" value=""required="required" />
+  </div >
+  <div class="form-group">
+        <input type="text" class="form-control" id="course"   name="course" placeholder="<%=stud.course %>" value="" required="required"/>
+    </div>
+    
+    <div  class="form-group">
+        <input type="text" class="form-control" id="dateBirth" name="dateBirth" placeholder="<%=stud.dateBirth %>" value=""required="required" />
+    </div >
+    <div  class="form-group"> 
+      <input type="text" class="form-control" id="address" name="address"   value="" placeholder="<%=stud.address %>" required="required" />
+  </div >
+  
+  </div>
+  
+     
+           <div class="custom-control custom-checkbox my-sm-2">
+          <input type="checkbox" class="custom-control-input style id="customControlInline  style="box-sizing: border-box;">
+          </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button  type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+
+        </form>
+</div>
+</body>
+</html>

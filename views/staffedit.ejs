@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title><%= title %></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<h2><%= title %></h2>
+<form action="/staffupdate" method="post">
+    <div class="form-group">
+      <input type="text" class="form-control" name="staffID" placeholder="Staff ID *" value="<%= roomData.staffID %>" required="required" />
+    </div>
+    <input type="text" class="form-control" name="fullName" placeholder="Staff Full Name *" value="<%= roomData.fullName %>"
+      required="required" />
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="password *" value="<%= roomData.password %>" 
+title="Must contain at least one number and one special character and one uppercase and lowercase letter, and at least 8 or more characters"
+       pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" required="required" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="email" placeholder="Email UTHM *" value="<%= roomData.email %>" required="required" />
+    </div>
+  </div>
+    <div class="custom-control custom-checkbox my-sm-2">
+      <input type="checkbox" class="custom-control-input style id=" customControlInline style="box-sizing: border-box;">
+    </div>
+    <div class="modal-footer">
+    
+      <button type="submit" class="btn btn-primary">Edit Staff</button>
+</div>
+</body>
+</html>

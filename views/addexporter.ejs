@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+
+ 
+
+
+  <body>
+  
+ <%- include('partials/header.ejs') %>
+    
+
+  
+ <aside id="sidebar-wrapper">
+  <div class="sidebar-brand">
+    <h2>Admin</h2>
+  </div>
+  <nav class="main-nav" role="navigation">
+  <ul class="sidebar-nav unstyled list-hover-slide">
+    
+    <li>
+      <a href="/staffadd"><i class="fa fa-book"></i>STAFF</a>
+    </li>
+    
+    <li >
+      <a href="/delete"><i class="fa fa-gear"></i>delete</a>
+    </li>
+      <li >
+        <a href="/addexporter"><i class="fa fa-gear"></i>Add Exporter</a>
+      </li>
+      
+  </ul>
+  </nav>
+</aside>
+
+    <div id="wrapper" class="nav-wrap">
+ 
+
+        
+      
+      <div id="navbar-wrapper">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <h3 style="padding-right: 730px;color: black;">Home Page</h3>
+              
+            </div>
+          </div>
+        </nav>
+      </div>
+      
+      <div class="container">
+        <div class="alert alert-danger d-none mt-2">
+          Please download MetaMask at <a target="_blank" href="https://metamask.io/download">Metamask Site</a>
+         </div>
+        <div class="row content m-1"> 
+          <div data-aos="fade-down" class="box wallet-status col-lg-12 d-flex flex-column my-2">
+            <i class="fa-brands fa-connectdevelop icon" aria-hidden="true"></i>
+         
+           <span id="userAddress" class="p-1">Address : <span class="text-warning">n/a</span></span>
+           <span id="network" class="p-1">Network: <span class="text-warning">n/a</span></span>
+           <span id="userBalance" class="p-1">Balance : <span class="text-warning">n/a</span></span>
+           <span id="num-hashes" class="p-1"><span class="text-warning"></span></span>
+           <span id="num-exporters" class="p-1"><span class="text-warning"></span></span>
+           
+          </div>
+        
+          <div data-aos="zoom-in" class="col-lg-6 py-3 data-upload my-3 mx-md-2">
+            <input   id="Exporter-address" type="text"  placeholder="Exporter Address"  required/>
+            <input  
+              type="text" 
+              id="info"
+              placeholder="Author"
+              required
+            />
+           
+            <span id="note" class="text-danger"
+              ></span
+            >
+            <img id="loader" class="d-none" src="files/loader.svg" alt="loader">
+            <div  class="btn-container mt-3">
+              <input
+              onclick="addExporter()"
+                class="btn btn-primary  exporter-button main-button"
+                type="submit"
+                value="Add Exporter"
+                id="ExporterBtn"
+              />
+              <input
+              onclick="deleteExporter()"
+                class="btn btn-danger  exporter-button main-button"
+                type="submit"
+                value="Delete Exporter"
+                id="delete"
+              />
+              <input
+              onclick="editExporter()"
+                class="btn btn-warning  exporter-button main-button"
+                type="submit"
+                value="Edit Exporter"
+                id="edit"
+              />
+            </div>
+           
+          </div>
+          
+ 
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <%- include('partials/footer.ejs') %>
+   </body>
+</html>
