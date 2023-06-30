@@ -29,8 +29,17 @@ var verify = require('./verify/verify');
  router.get('/login', function (req, res) {    
     res.render('login');});
 /* GET home page. */
-
 router.get("/",function(req,res){
+    if (req.session.loggedin) {
+		res.render("detailView");
+	} else {
+		res.render("pages/index");
+		}
+	res.end();
+    });
+
+
+router.get("/login",function(req,res){
     if (req.session.loggedin) {
 		res.render("detailView");
 	} else {
