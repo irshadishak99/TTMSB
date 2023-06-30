@@ -498,15 +498,16 @@ async function sendHash() {
   // =================================================
   if (window.hashedfile) {
     const file = document.getElementById('doc-file').files[0];
-    window.ipfsCid = file.name;
+    const studID = document.getElementById('studID').value;
+    window.ipfsCid = studID;
   MyCID = window.ipfsCid + '/' ;
   console.log('My-CID 1: ' + MyCID);
 
     // document.addEventListener('DOMContentLoaded', () => {
     
-    const studID = document.getElementById('studID').value;
+    
     const hashDoc = window.hashedfile;
-console.log('studID='+studID);
+    console.log('studID='+studID);
 
     // const uploadForm = document.querySelector('form');
     // console.log('form:', uploadForm); // Debugging line
@@ -516,11 +517,13 @@ console.log('studID='+studID);
     //  console.log('Try upload');
     //  let studID = e.target.studID.value;
     //  let file = e.target.file.files[0];
+    // const newFileName = studID + '_' + file.name;
      let formData = new FormData();
     //  let abc= window.hashedfile;
-     formData.append('doc-file', file);
+     formData.append('doc-file', file,studID);
      formData.append('studID', studID);
      formData.append('hashDoc', hashDoc);
+     
      
      fetch('/addtranscript', {
         method: 'POST',
@@ -981,6 +984,18 @@ async function modifyPdf() {
 const downloadLink = document.createElement('a');
 downloadLink.setAttribute('download', file.name);
 downloadLink.setAttribute('href', pdfUrl);
+const studID = document.getElementById('studID').value;
+
+let qrData = new FormData();
+    //  let abc= window.hashedfile;
+     qrData.append('pdfUrl', pdfUrl);
+     qrData.append('studID', studID);
+     
+     fetch('/addQRTranscript', {
+        method: 'POST',
+        body: qrData
+        
+     })
 
 // Trigger a click event on the link element
 downloadLink.click();

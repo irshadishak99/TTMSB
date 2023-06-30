@@ -79,7 +79,7 @@
           <!-- upload form -->
           <div data-aos="zoom-in" class="col py-3 data-upload my-3 text-center">
             <form  method="post" enctype="multipart/form-data" >
-            <input onchange="get_Sha3()" id="doc-file" type="file" accept=".pdf" />
+            <input onchange="get_Sha3()" id="doc-file" type="file" name="<%= data.studID %>" accept=".pdf" />
             <span id="note" class="text-danger"></span>
             <img id="loader" class="d-none " src="files/loader.svg" alt="loader" />
             

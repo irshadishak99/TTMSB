@@ -304,7 +304,16 @@ section {
   background-color: var(--boxes-color);
 }
 
-input,
+input {
+  margin: 10px 0px;
+  background: var(--inputs-background);
+  border: 1px solid var(--main-color);
+  outline: none;
+  padding: 15px 15px;
+  border-radius: 10px;
+  width: 100%;
+  color: var(--white);
+}
 #hashed-file {
   margin: 10px 0px;
   background: var(--inputs-background);

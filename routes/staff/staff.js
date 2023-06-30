@@ -43,29 +43,27 @@ router.get("/staffadd",function(req,res){
             }
 
 
-        if (req.session.loggedin)
-        { 
-            db.query(
-           "INSERT INTO staff (staffID,fullName,password,email) VALUES ('"+req.body.staffID+"',  '"+req.body.fullName+"', ? ,'"+req.body.email+"')" ,[hashPass],function(err,result){
-             if (err) {
-               if(err.code == "ER_DUP_ENTRY" ){
-                   console.log("Error Dupliacate");
-               }else{
-                    throw err;
-               }
+            if (req.session.loggedin) {
+              db.query(
+                "INSERT INTO staff (staffID, fullName, password, email) VALUES (?, ?, ?, ?)",
+                [req.body.staffID, req.body.fullName, hashPass, req.body.email],
+                function(err, result) {
+                  if (err) {
+                    if (err.code == "ER_DUP_ENTRY") {
+                      console.log("Error Duplicate");
+                    } else {
+                      throw err;
+                    }
+                  }
+                  console.log("record inserted");
+                  res.redirect("/staffadd");
+                }
+              );
+            } else {
+              res.render("login");
             }
-            console.log("record inserted");
-            res.redirect("/staffadd");
-        }); 
-    
-    }else{
-        res.render("login");
-
-    
-    }
-    });
-     res.redirect('staffadd');
-   });
+          });
+        });
 
    ///////////////////Delete//////////////
    

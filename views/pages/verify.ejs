@@ -96,7 +96,6 @@
       <div class="box d-none my-3 row gx-0 mx-md-2 transaction-status col-lg">
         <div class="left col-lg-6 p-3 d-flex flex-column">
           <span class="p-2 info text-center" id="doc-status"></span>
-          <span class="p-2 info" id="student-name"></span>
           <span class="p-2 info" id="file-hash"></span>
           <span class="p-2 info" id="contract-address"></span>
           <span class="p-2 info" id="time-stamps"></span>
@@ -560,7 +559,7 @@
 	// 	}, {embedMode: "SIZED_CONTAINER"});
 	// });
         document.getElementById('student-document').data =
-           '/upload/' + result[3]
+           '/upload/' + result[3]+'.pdf'
         const container = document.getElementById('student-document');
     // Specify the URL of the PDF file
 //       const pdfUrl =  window.location.host+ '/upload/' + result[3];
@@ -591,8 +590,8 @@
 //         console.error('Error loading PDF:', error);
 //         });
 
-          console.log(window.location.host+ '/upload/' + result[3])
-        document.getElementById('download-documents').href = window.location.host + '/upload/' + result[3]
+          console.log(window.location.host+ '/upload/' + result[3] +'.pdf')
+        document.getElementById('download-documents').href = window.location.host + '/upload/' + result[3] +'.pdf'
         $('.transaction-status').show()
       }
     }

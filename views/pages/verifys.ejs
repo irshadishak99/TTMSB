@@ -540,7 +540,7 @@
           `<span class="text-info"><i class="fa-solid fa-graduation-cap"></i></span> ${result[2]}`,
         )
         $('#student-name').html(
-          `<span class="text-info"><i class="fa-solid fa-graduation-cap"></i></span>`,
+          `<span class="text-info"><i class="fa-solid fa-graduation-cap"></i></span>${result[3]}`,
         )
         $('#contract-address').html(
           `<span class="text-info"><i class="fa-solid fa-file-contract"></i> </span>${truncateAddress(
@@ -565,7 +565,7 @@
 	// 	}, {embedMode: "SIZED_CONTAINER"});
 	// });
         document.getElementById('student-document').data =
-           '/upload/' + result[3]
+           '/upload/' + result[3]+'.pdf'
         const container = document.getElementById('student-document');
     // Specify the URL of the PDF file
 //       const pdfUrl =  window.location.host+ '/upload/' + result[3];
@@ -596,12 +596,12 @@
 //         console.error('Error loading PDF:', error);
 //         });
 
-          console.log(window.location.host+ '/upload/' + result[3])
-        document.getElementById('download-documents').href = window.location.host + '/upload/' + result[3]
+          console.log(window.location.host+ '/upload/' + result[3] +'.pdf')
+        document.getElementById('download-documents').href = '/upload/' + result[3] +'.pdf'
         $('.transaction-status').show()
       }
     }
-   
+
     function truncateAddress(address) {
       if (!address) {
         return
