@@ -1,6 +1,6 @@
 
 window.CONTRACT = {
-  address: '0x18ba5497e5fa15d5C48572B9940635f1a804E8B5',
+  address: '0x5999F12C126d7f9c2767B50E05c68a49098F91f7',
   network: 'https://matic-mumbai.chainstacklabs.com',
   explore: 'https://mumbai.polygonscan.com/',
   abi: [
@@ -952,6 +952,7 @@ async function modifyPdf() {
  
   // Fetch an existing PDF document
   const file = document.getElementById('doc-file').files[0];
+  const studID = document.getElementById('studID').value;
   const url = URL.createObjectURL(file);
   const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
   var bytes = new Uint8Array(existingPdfBytes);
@@ -959,20 +960,31 @@ async function modifyPdf() {
   const pdfDoc = await PDFDocument.load(bytes);
   // Get the first page of the document
   const pages = pdfDoc.getPages();
-  const firstPage = pages[0];
+  
     // Fetch QR PNG image
   const pngUrl = document.querySelector('#qrcode img',
   ).src;
   const pngImageBytes = await fetch(pngUrl).then((res) => res.arrayBuffer());
   const pngImage = await pdfDoc.embedPng(pngImageBytes);
-  const pngDims = pngImage.scale(0.25);
-          // Add a qr to to the document
- firstPage.drawImage(pngImage, {
-    x: firstPage.getWidth()  - pngDims.width,
-    y: 0,
+  const pngDims = pngImage.scale(0.20);
+  const firstPage = pages[0];
+  // Add a qr to to the document
+  firstPage.drawImage(pngImage, {
+    x: firstPage.getWidth() - pngDims.width - 40, // Adjust the X-coordinate to position the QR code
+    y: firstPage.getHeight() - pngDims.height - 50, // Adjust the Y-coordinate to position the QR code
     width: pngDims.width,
     height: pngDims.height,
   });
+  const secPage = pages[1];
+  // Add a qr to to the document
+  secPage.drawImage(pngImage, {
+    x: secPage.getWidth() - pngDims.width - 40, // Adjust the X-coordinate to position the QR code
+    y: secPage.getHeight() - pngDims.height - 50, // Adjust the Y-coordinate to position the QR code
+    width: pngDims.width,
+    height: pngDims.height,
+  });
+
+
   const pdfBytes = await pdfDoc.save();
   
   // Serialize the PDFDocument to bytes (a Uint8Array)
@@ -980,22 +992,25 @@ async function modifyPdf() {
   
   // Create a URL for the Blob object
   const pdfUrl = URL.createObjectURL(pdfBlob);
+  console.log(pdfUrl);
+ // file=pdfUrl;
+  console.log(file);
 // Create a link element with the download attribute
 const downloadLink = document.createElement('a');
-downloadLink.setAttribute('download', file.name);
+downloadLink.setAttribute('download', studID+'_QR');
 downloadLink.setAttribute('href', pdfUrl);
-const studID = document.getElementById('studID').value;
 
-let qrData = new FormData();
-    //  let abc= window.hashedfile;
-     qrData.append('pdfUrl', pdfUrl);
-     qrData.append('studID', studID);
+
+// let qrData = new FormData();
+//     //  let abc= window.hashedfile;
+//      qrData.append('pdfUrl', file);
+//      qrData.append('studID', studID);
      
-     fetch('/addQRTranscript', {
-        method: 'POST',
-        body: qrData
+//      fetch('/addQRTranscript', {
+//         method: 'POST',
+//         body: qrData
         
-     })
+//      })
 
 // Trigger a click event on the link element
 downloadLink.click();
@@ -1011,13 +1026,13 @@ function generateQRCode() {
     correctLevel: QRCode.CorrectLevel.H,
   })
   if (!window.hashedfile) return
-  let url = `${window.location.host}/verify?hash=${window.hashedfile}`
+  let url = `${window.location.protocol}//${window.location.host}/verify?hash=${window.hashedfile}`
   qrcode.makeCode(url)
   
   qrcodeattach =  qrcode.makeCode(url)
 
   
-  document.getElementById('verfiy').href = window.location.protocol + '//' + url
+  document.getElementById('verfiy').href = url
 }
 
 

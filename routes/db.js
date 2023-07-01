@@ -1,9 +1,9 @@
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host     : 'b3ipncj85vzkcjcdvltt-mysql.services.clever-cloud.com',
-  user     : 'uk84alzz2ysiax1b',
-  password : 'HUYFiwm7fEZ1rNBgy3LQ',
-  database : 'b3ipncj85vzkcjcdvltt',
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'ttmsb',
   multipleStatements: true
 
 });

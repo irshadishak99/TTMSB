@@ -48,12 +48,12 @@ var data;
           
             console.log("dataialah :"+data);
             // console.log("nama"+pathname);
-            const filePath = __dirname +"../../../" +"/upload/" + data;
+            const filePath = __dirname +"../../../" +"/upload/" + data +".pdf";
        
-            
+            console.log(filePath);
             res.download(
                 filePath, 
-                data, // Remember to include file extension
+                data+'.pdf', // Remember to include file extension
                 (err) => {
                     if (err) {
                         res.send({

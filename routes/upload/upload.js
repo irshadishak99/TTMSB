@@ -22,28 +22,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/addQRTranscript', upload.single('pdfUrl'), (req, res) => {
-    if (req.session.loggedin)
-    {  
-    const pdfQR = req.file.originalname;
-    const studID = req.body.studID;
-    saveQR(pdfQR,studID, (error, result) => {
-        if (error) {
-            console.error(error);
-            res.status(500).send({ error: 'Error saving file path to database' });
-        } else {
-            res.status(200).send({ message: 'File uploaded and path saved to database', data: result });
-        }
-    });
-}else
-res.redirect("/login");
-});
-function saveQR(pdfQR,studID, callback) {
-    // const query = 'INSERT INTO transcript (file_path) VALUES (?)';
-    db.query("UPDATE transcript SET pdfQR =?  WHERE studID = ?",[pdfQR,studID] ,(error, result) => {
-        callback(error, result);
-    });
-}
+
 
 router.post('/addtranscript', upload.single('doc-file'), (req, res) => {
     if (req.session.loggedin)
