@@ -40,6 +40,6 @@ app.get('/index', function (req, res) {
     
 app.use('/', main); 
 // Port website will run on
-app.listen(3000,function(){
+app.listen(2052,function(){
     console.log("Everything is fine");
 });
