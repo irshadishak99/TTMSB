@@ -75,7 +75,7 @@ body {
   .sidebar-nav > li.active > a {
     text-decoration: none;
     color: #fff;
-    background: #009900;
+    background: #7a7b7a;
   }
   .sidebar-nav > li > a i.fa {
     font-size: 24px;

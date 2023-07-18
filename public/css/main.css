@@ -30,9 +30,9 @@ button {
   animation: bounce 1000ms alternate infinite;
 }
 .card {
-  height: 200px;
+  /* height: 200px; */
   transition: all 0.3s;
-  width: 300px;
+  /* width: 300px; */
   box-shadow: 0 0px 5px rgb(15, 4, 10);
 }
 .card:hover

@@ -25,7 +25,12 @@ var verify = require('./verify/verify');
 
 // router.get('/verify', function (req, res) {    
 //       res.render('pages/verify');});
-
+router.get('/adminManual', function(req,res){
+	res.render('adminManual')
+});
+router.get('/userManual', function(req,res){
+	res.render('userManual')
+});
  router.get('/login', function (req, res) {    
     res.render('login');});
 /* GET home page. */

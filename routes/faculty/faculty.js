@@ -114,28 +114,32 @@ var data;
  /* CRUD FOR  FACULTIES */
     /* Add */
 
-    router.post("/addFaculty",function(request,response){
-        if (request.session.loggedin)
-        { 
-            db.query(
-           "INSERT INTO faculty (studID, name, course, dateBirth, address) VALUES ('"+request.body.studID+"', '"+request.body.name+"', '"+request.body.course+"', '"+request.body.dateBirth+"', '"+request.body.address+"')",function(err,result){
-             if (err) {
-               if(err.code == "ER_DUP_ENTRY" ){
-                   console.log("Error Dupliacate");
-               }else{
-                    throw err;
-               }
-            }
-            console.log("record inserted");
-       }); 
-    
-    }else{
-        response.render("login");
-
-    }
-     response.redirect('facultyView');
-   });
-
+    router.post("/addFaculty", function (request, response) {
+      if (request.session.loggedin) {
+          // Check if studID already exists
+          db.query("SELECT * FROM faculty WHERE studID = ?", [request.body.studID], function (err, result) {
+              if (err) {
+                  throw err;
+              }
+              if (result.length > 0) {
+                  console.log("Error: Existing studID");
+                  // Render an error message or send a response indicating the duplicate studID
+                  response.send("Error: Existing studID");
+              } else {
+                  // Insert the new record
+                  db.query("INSERT INTO faculty (studID, name, course, icStud, address) VALUES (?, ?, ?, ?, ?)", [request.body.studID, request.body.name, request.body.course, request.body.icStud, request.body.address], function (err, result) {
+                      if (err) {
+                          throw err;
+                      }
+                      console.log("Record inserted");
+                      response.redirect('facultyView');
+                  });
+              }
+          });
+      } else {
+          response.render("login");
+      }
+  });
    
 
  /* Delete */
@@ -204,51 +208,80 @@ var data;
       
   });
 
-router.post("/editFaculty/:id",function(request,response){
-    if (request.session.loggedin)
-    { 
-        var userId = request.params.userId;
-        console.log("userID="+userId);
-        db.query(
-       "UPDATE faculty SET studID='"+request.body.studID+"',  name='"+request.body.name+"' , course='"+request.body.course+"', dateBirth='"+request.body.dateBirth+"', address='"+request.body.address+"' where id = ?'", [userId],function(err,result){
-         if (err) {
-           if(err.code == "ER_DUP_ENTRY" ){
-               console.log("Error Dupliacate");
-           }else{
+  router.post("/editFaculty/:id", function (request, response) {
+    if (request.session.loggedin) {
+        var userId = request.params.id;
+        console.log("userID=" + userId);
+        
+        // Check if studID already exists
+        db.query("SELECT * FROM faculty WHERE studID = ? AND id != ?", [request.body.studID, userId], function (err, result) {
+            if (err) {
                 throw err;
-           }
-        }
-        console.log("record inserted");
-   }); 
-
-}else{
-    response.render("login");
-
-}
- response.redirect('facultyView');
+            }
+            if (result.length > 0) {
+                console.log("Error: Existing studID");
+                // Render an error message or send a response indicating the duplicate studID
+                response.send("Error: Existing studID");
+            } else {
+                // Update the record
+                db.query("UPDATE faculty SET studID = ?, name = ?, course = ?, icStud = ?, address = ? WHERE id = ?", [request.body.studID, request.body.name, request.body.course, request.body.icStud, request.body.address, userId], function (err, result) {
+                    if (err) {
+                        throw err;
+                    }
+                    console.log("Record updated");
+                    response.redirect('facultyView');
+                });
+            }
+        });
+    } else {
+        response.render("login");
+    }
 });
+
 
 
 router.post('/updateFac', function (req, res) {
   if (req.session.loggedin) {
-    var sql =
-      'UPDATE faculty SET studID = ?, name = ?, course = ?, dateBirth = ?, address = ? WHERE studID = ?';
-    var values = [
-      req.body.studID,
-      req.body.name,
-      req.body.course,
-      req.body.dateBirth,
-      req.body.address,
-      req.body.studID,
-    ];
-    var query = db.query(sql, values, function (err, results) {
-      if (err) throw err;
-      res.redirect('facultyView');
+    var userId = req.body.id;
+    var newStudID = req.body.studID;
+
+    // Check if newStudID already exists for other records
+    var checkQuery = 'SELECT * FROM faculty WHERE studID = ? AND id != ?';
+    var checkValues = [newStudID, userId];
+    db.query(checkQuery, checkValues, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      if (result.length > 0) {
+        console.log('Error: Existing studID');
+        // Render an error message or send a response indicating the duplicate studID
+        res.send('Error: Existing studID');
+      } else {
+        // Update the record
+        var updateQuery =
+          'UPDATE faculty SET studID = ?, name = ?, course = ?, icStud = ?, address = ? WHERE id = ?';
+        var updateValues = [
+          req.body.studID,
+          req.body.name,
+          req.body.course,
+          req.body.icStud,
+          req.body.address,
+          userId,
+        ];
+        db.query(updateQuery, updateValues, function (err, results) {
+          if (err) {
+            throw err;
+          }
+          console.log('Record updated');
+          res.redirect('facultyView');
+        });
+      }
     });
   } else {
     res.render('login');
   }
 });
+
 
 router.get("/faculty",function(req,res){
     if (req.session.loggedin) {

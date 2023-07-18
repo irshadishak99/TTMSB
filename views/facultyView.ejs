@@ -18,12 +18,15 @@
 
       <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-          <h2>STAFF</h2>
+          <h2><a  style="text-decoration: none;color:white;" href="/detailView">Staff</a></h2>    
         </div>
         <nav class="main-nav" role="navigation">
         <ul class="sidebar-nav unstyled list-hover-slide">
-          <li>
-            <a  href="/facultyView"><i class="fa fa-graduation-cap"></i>ADD STUDENT</a>
+          <li class="active">
+            <a  href="/facultyView"><i class="fa fa-graduation-cap"></i>STUDENT</a>
+          </li>
+          <li >
+            <a  href="/userManual"><i class="fa fa-gear"></i>MANUAL</a>
           </li>
          
         </ul>
@@ -34,9 +37,10 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <h3 style="padding-right: 730px;color: black;">Student Value </h3>
+              <h3 style="color: black;">Student Value </h3>
               
             </div>
+           
           </div>
         </nav>
       </div>
@@ -51,7 +55,7 @@
                                 <th>Student Id</th>
                                 <th>First Name</th>
                                 <th>Course</th>
-                                <th>Birth Date</th>
+                                <th>IC</th>
                                 <th>Address</th>
                                 <th>Transcript</th>
                                 <th>Action</th>
@@ -63,7 +67,7 @@
                                 <td><%= stud[i].studID %></td>
                                 <td><%= stud[i].name %></td>
                                 <td><%= stud[i].course %></td>
-                                <td><%= stud[i].dateBirth %></td>
+                                <td><%= stud[i].icStud %></td>
                                 <td><%= stud[i].address %></td>
                                 <td>
                                   <% var hasTranscript = false; %>
@@ -135,7 +139,6 @@
 
       </div>
 
-  
                
                     <!-- Modal -->
                     
@@ -171,7 +174,7 @@
               </div>
           
               <div class="form-group">
-                <input type="text" class="form-control" name="dateBirth" placeholder="Date Birth *" value=""
+                <input type="text" class="form-control" name="icStud" placeholder="Student IC *" value=""
                   required="required" />
               </div>
               <div class="form-group">
@@ -234,7 +237,7 @@
               </div>
               
               <div  class="form-group">
-                  <input type="text" class="form-control" id="dateBirth" name="dateBirth" placeholder="<%=stud[i].dateBirth %>" value=""required="required" />
+                  <input type="text" class="form-control" id="icStud" name="icStud" placeholder="<%=stud[i].icStud %>" value=""required="required" />
               </div >
               <div  class="form-group"> 
                 <input type="text" class="form-control" id="address" name="address"   value="" placeholder="<%=stud[i].address %>" required="required" />
@@ -260,6 +263,7 @@
       <% }; %>
     </div>
   </div>
+  
   <script>
     function openEditModal(id) {
      // Fetch faculty data
@@ -276,7 +280,7 @@
       document.getElementById('studID').value = data.studID;
       document.getElementById('nameInput').value = data.name;
       document.getElementById('course').value = data.course;
-      document.getElementById('dateBirth').value = data.dateBirth;
+      document.getElementById('icStud').value = data.icStud;
       document.getElementById('address').value = data.address;
     })
     .catch(error => {

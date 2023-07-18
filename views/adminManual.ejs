@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+
+ 
+
+
+  <body>
+  
+ <%- include('partials/header.ejs') %>
+    
+
+  
+  <aside id="sidebar-wrapper">
+    <div class="sidebar-brand">
+      <h2><a  style="text-decoration: none;color:white;" href="/admin">Admin</a></h2>
+        </div>
+    <nav class="main-nav" role="navigation">
+    <ul class="sidebar-nav unstyled list-hover-slide">
+      <li>
+        <a href="/staffadd"><i class="fa fa-book"></i>STAFF</a>
+      </li>
+      
+      <li >
+        <a href="/delete"><i class="fa fa-gear"></i>Delete</a>
+      </li>
+        <li >
+          <a href="/addexporter"><i class="fa fa-gear"></i>Add Exporter</a>
+        </li>
+        <li class="active">
+          <a href="/adminManual"><i class="fa fa-gear"></i>Manual</a>
+        </li>
+        
+    </ul>
+    </nav>
+  </aside>
+
+  <div id="wrapper" class="nav-wrap">
+ 
+
+        
+      
+    <div id="navbar-wrapper">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <h3 style="color: black;">Admin Manual</h3>
+            
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+      
+      <div>
+        <div  class="container " style="padding-top: 9px;">
+            <div class="row justify-content-center" style="padding: 15px;">
+                <div class="col-sm-3 col d-flex">
+                  
+                <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="../assets/images/MANUALSTARTUP.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <p class="card-text">Manual for from installation, requirement, deployment. Installation Requirement<br>
+                      1. Node.js<br>
+                      2. MySQL<br>
+                      3. METAMASK<br>
+                      4. Connect METAMASK to Polygon Mumbai Testnet<br>
+                      5. Smart Contract Ownership</p>
+                  </div>
+                  <a class="btn btn-primary" href="../Manual/MANUAL STARTUP SYSTEM.pdf" download="MANUAL STARTUP SYSTEM.pdf">Download Manual</a>
+                </div>
+                
+              
+            </div><div class="col-sm-3 col d-flex">
+                  
+              <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="../assets/images/ADMINMANUAL.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Manual for admin. Including <br>ADMIN MANUAL of<br>
+                    1. Manage Staff<br>
+                    2. Delete Hash Transcript<br>
+                    3. Add Exporter</p>
+                </div>
+                <a class="btn btn-primary" href="../Manual/ADMIN MANUAL.pdf" download="ADMIN MANUAL.pdf">Download Manual</a>
+
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal"  data-target=".bd-example-modal-lg4">User Manual</button> -->
+              </div>
+              
+            
+          </div>
+
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h4 class="modal-title" id="myLargeModalLabel">Manual 1</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h4 class="modal-title" id="myLargeModalLabel">Manual 2</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-lg3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h4 class="modal-title" id="myLargeModalLabel">Manual 3</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-lg4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h4 class="modal-title" id="myLargeModalLabel">Manual 4</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe src='https://view.officeapps.live.com/op/embed.aspx?src=../Manual/Admin Manual.docx' width='100%' height='650px' frameborder='0'></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <%- include('partials/footer.ejs') %>
+   </body>
+</html>

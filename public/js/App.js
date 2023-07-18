@@ -571,7 +571,7 @@ async function sendHash() {
   //     MyCID = window.ipfsCid + '/'
   //   console.log('My-CID 1: ' + MyCID)
   //     console.log("IPFS URI: ", url)
-    }
+    
 
     await window.contract.methods
       .addDocHash(window.hashedfile, window.ipfsCid)
@@ -595,6 +595,7 @@ async function sendHash() {
         $('#loader').addClass('d-none')
         $('#upload_file_button').slideDown()
       })
+    }
   }
 // }
 
@@ -610,6 +611,7 @@ async function deleteHash() {
   get_ChainID()
 
   if (window.hashedfile) {
+    console.log("hash file delete="+window.hashedfile)
     await window.contract.methods
       .deleteHash(window.hashedfile)
       .send({ from: window.userAddress })

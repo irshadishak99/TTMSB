@@ -13,8 +13,8 @@
   
  <aside id="sidebar-wrapper">
   <div class="sidebar-brand">
-    <h2>Admin</h2>
-  </div>
+    <h2><a  style="text-decoration: none;color:white;" href="/admin">Admin</a></h2>
+    </div>
   <nav class="main-nav" role="navigation">
   <ul class="sidebar-nav unstyled list-hover-slide">
     
@@ -23,10 +23,13 @@
     </li>
     
     <li >
-      <a href="/delete"><i class="fa fa-gear"></i>delete</a>
+      <a href="/delete"><i class="fa fa-trash"></i>Delete Hash</a>
     </li>
+      <li class="active">
+        <a href="/addexporter"><i class="fa fa-circle-plus"></i>Add Exporter</a>
+      </li>
       <li >
-        <a href="/addexporter"><i class="fa fa-gear"></i>Add Exporter</a>
+        <a href="/adminManual"><i class="fa fa-gear"></i>Manual</a>
       </li>
       
   </ul>
@@ -42,9 +45,10 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <h3 style="padding-right: 730px;color: black;">Home Page</h3>
+              <h3 style="color: black;">Home Page</h3>
               
             </div>
+           
           </div>
         </nav>
       </div>
@@ -109,6 +113,7 @@
       </div>
       
     </div>
+   
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

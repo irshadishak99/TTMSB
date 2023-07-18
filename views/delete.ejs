@@ -7,7 +7,7 @@
     
  <aside id="sidebar-wrapper">
   <div class="sidebar-brand">
-    <h2>Admin</h2>
+    <h2><a  style="text-decoration: none;color:white;" href="/admin">Admin</a></h2>
   </div>
   <nav class="main-nav" role="navigation">
   <ul class="sidebar-nav unstyled list-hover-slide">
@@ -16,11 +16,14 @@
       <a href="/staffadd"><i class="fa fa-book"></i>STAFF</a>
     </li>
     
-    <li >
-      <a href="/delete"><i class="fa fa-gear"></i>delete</a>
+    <li class="active">
+      <a href="/delete"><i class="fa fa-trash"></i>Delete Hash</a>
     </li>
       <li >
-        <a href="/addexporter"><i class="fa fa-gear"></i>Add Exporter</a>
+        <a href="/addexporter"><i class="fa fa-circle-plus"></i>Add Exporter</a>
+      </li>
+      <li >
+        <a href="/adminManual"><i class="fa fa-gear"></i>Manual</a>
       </li>
       
   </ul>
@@ -34,9 +37,10 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <h3 style="padding-right: 730px;color: black;">Home Page</h3>
+              <h3 style="color: black;">Home Page</h3>
               
             </div>
+           
           </div>
         </nav>
       </div>
@@ -77,6 +81,22 @@
         </div>
       </div>
       
+    </div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    
+          <div class="modal-header">
+            <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">x</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Optional JavaScript -->

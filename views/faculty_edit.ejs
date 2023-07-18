@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 <div class="container">
@@ -17,6 +18,7 @@
   <div style="margin-top: 50px; padding: 5%; background-color: #f3f3f3;">
    
     <div class="form-group">
+      <input type="hidden" class="form-control"  id="id" name="id"  placeholder="" value="<%=stud.id %>" required="required"/>
                
     <input type="text" class="form-control"  id="studID" name="studID"  placeholder="" value="<%=stud.studID %>" required="required"/>
   </div>
@@ -29,7 +31,7 @@
     </div>
     
     <div  class="form-group">
-        <input type="text" class="form-control" id="dateBirth" name="dateBirth" placeholder="" value="<%=stud.dateBirth %>"required="required" />
+        <input type="text" class="form-control" id="icStud" name="icStud" placeholder="" value="<%=stud.icStud %>"required="required" />
     </div >
     <div  class="form-group"> 
       <input type="text" class="form-control" id="address" name="address"   value="<%=stud.address %>" placeholder="" required="required" />
@@ -42,7 +44,7 @@
           <input type="checkbox" class="custom-control-input style id="customControlInline  style="box-sizing: border-box;">
           </div> 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button onclick="location.href='/facultyView';" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button  type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
 
