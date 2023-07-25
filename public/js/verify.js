@@ -1,5 +1,5 @@
 window.CONTRACT = {
-  address: '0x18ba5497e5fa15d5C48572B9940635f1a804E8B5',
+  address: '0x86337b16d83f87058f168F5505aB4617b4d84A63',
   network: 'https://matic-mumbai.chainstacklabs.com',
   explore: 'https://mumbai.polygonscan.com/',
   abi: [

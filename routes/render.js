@@ -26,13 +26,22 @@ var verify = require('./verify/verify');
 // router.get('/verify', function (req, res) {    
 //       res.render('pages/verify');});
 router.get('/adminManual', function(req,res){
+	if (req.session.loggedin) {
 	res.render('adminManual')
+}
+else {
+	res.render("pages/index");
+	}
 });
 router.get('/userManual', function(req,res){
+	if (req.session.loggedin) {
 	res.render('userManual')
+	}
+	else {
+		res.render("pages/index");
+		}
 });
- router.get('/login', function (req, res) {    
-    res.render('login');});
+
 /* GET home page. */
 router.get("/",function(req,res){
     if (req.session.loggedin) {
